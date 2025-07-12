@@ -10,19 +10,21 @@
       --white: #ffffff;
       --purple: #c888f2;
       --black: #000000;
-      --text-light: #ffffff;
-      --text-dark: #000000;
+      --gray: #888;
       --font-main: 'Orbitron', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
       font-family: var(--font-main);
-      display: flex;
-      flex-direction: column;
+      background: linear-gradient(to bottom, var(--white) 0% 71.4%, var(--purple) 71.4% 100%);
       height: 100vh;
-      background: linear-gradient(to bottom, var(--white) 0%, var(--white) 71.4%, var(--purple) 71.4%, var(--purple) 100%);
-      transition: background-color 0.3s, color 0.3s;
+      position: relative;
+      transition: background 0.3s;
     }
 
     .controls {
@@ -38,87 +40,96 @@
       color: var(--white);
       border: none;
       padding: 5px 10px;
-      cursor: pointer;
       border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .top-right-png {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 100px;
+      top: 20px;
+      right: 20px;
+      width: 80px;
       height: auto;
     }
 
-    .browser-container {
+    .browser-wrapper {
       background-color: var(--white);
-      border-radius: 10px 10px 0 0;
-      margin: auto;
-      width: 80%;
-      max-width: 700px;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 600px;
+      margin: 120px auto 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       overflow: hidden;
+      text-align: center;
     }
 
-    .browser-bar {
+    .browser-tab {
       background-color: var(--black);
       color: var(--white);
       padding: 10px;
       text-align: left;
+      font-size: 0.95rem;
     }
 
-    .browser-content {
-      padding: 30px;
-      text-align: center;
+    .browser-body {
+      padding: 40px 20px 30px;
     }
 
-    .browser-content h1 {
-      margin: 0;
+    .browser-body h1 {
       font-size: 2rem;
+      margin: 0 0 10px;
     }
 
-    .browser-content p {
-      margin: 10px 0 30px 0;
+    .browser-body p {
       font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 30px;
     }
 
     .button-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
     }
 
     .button-grid button {
-      padding: 10px 15px;
-      background-color: var(--black);
-      color: var(--white);
+      background-color: transparent;
       border: none;
-      border-radius: 6px;
-      font-size: 1rem;
+      text-align: center;
       cursor: pointer;
-      transition: background-color 0.2s;
     }
 
-    .button-grid button:hover {
-      background-color: #333;
+    .button-grid img {
+      width: 40px;
+      height: 40px;
+      display: block;
+      margin: 0 auto 5px;
+    }
+
+    .button-grid span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--black);
     }
 
     .dark-mode {
-      background: linear-gradient(to bottom, #111 0%, #111 71.4%, #3a2a4f 71.4%, #3a2a4f 100%);
+      background: linear-gradient(to bottom, #111 0% 71.4%, #3a2a4f 71.4% 100%);
     }
 
-    .dark-mode .browser-container {
+    .dark-mode .browser-wrapper {
       background-color: #222;
-      color: var(--text-light);
+      color: #eee;
     }
 
-    .dark-mode .browser-bar {
+    .dark-mode .browser-tab {
       background-color: #000;
+      color: #fff;
     }
 
-    .dark-mode .button-grid button {
-      background-color: #444;
+    .dark-mode span {
+      color: #eee;
     }
   </style>
 </head>
@@ -128,19 +139,34 @@
     <button class="control-btn" id="soundToggle">Sound: Off</button>
   </div>
 
-  <img src="your-image.png" alt="Decorative Element" class="top-right-png" />
+  <img src="your-element.png" alt="Top Right Element" class="top-right-png">
 
-  <div class="browser-container">
-    <div class="browser-bar">lobby</div>
-    <div class="browser-content">
+  <div class="browser-wrapper">
+    <div class="browser-tab">lobby</div>
+    <div class="browser-body">
       <h1>Welcome to Portal!</h1>
-      <p>Enter the digital space of my weird little brain.</p>
+      <p>A little browser into my brain. Have a peek around.</p>
       <div class="button-grid">
-        <button>About Me</button>
-        <button>Archives</button>
-        <button>Links</button>
-        <button>Contact</button>
-        <button>Written Work</button>
+        <button>
+          <img src="about-icon.png" alt="About Icon">
+          <span>About Me</span>
+        </button>
+        <button>
+          <img src="archives-icon.png" alt="Archives Icon">
+          <span>Archives</span>
+        </button>
+        <button>
+          <img src="links-icon.png" alt="Links Icon">
+          <span>Links</span>
+        </button>
+        <button>
+          <img src="contact-icon.png" alt="Contact Icon">
+          <span>Contact</span>
+        </button>
+        <button>
+          <img src="writing-icon.png" alt="Written Work Icon">
+          <span>Written Work</span>
+        </button>
       </div>
     </div>
   </div>
@@ -159,7 +185,6 @@
     soundToggle.onclick = () => {
       soundOn = !soundOn;
       soundToggle.textContent = `Sound: ${soundOn ? 'On' : 'Off'}`;
-      // Hook up to your audio system later
     };
   </script>
 </body>
