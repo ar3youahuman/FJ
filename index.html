@@ -1,192 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --white: #ffffff;
-      --purple: #c888f2;
-      --black: #000000;
-      --gray: #888;
-      --font-main: 'Orbitron', sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font-main);
-      background: linear-gradient(to bottom, var(--white) 0% 71.4%, var(--purple) 71.4% 100%);
-      height: 100vh;
-      position: relative;
-      transition: background 0.3s;
-    }
-
-    .controls {
-      position: absolute;
-      top: 5px;
-      left: 10px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .control-btn {
-      background-color: var(--black);
-      color: var(--white);
-      border: none;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .top-right-png {
-      position: absolute;
-      top: 5px;
-      right: 20px;
-      width: 80px;
-      height: auto;
-    }
-
-    .browser-wrapper {
-      background-color: var(--white);
-      width: 90%;
-      max-width: 600px;
-      margin: 80px auto 0 auto;
-      border-radius: 8px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .browser-tab {
-      background-color: var(--black);
-      color: var(--white);
-      padding: 10px;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    .browser-body {
-      padding: 60px 20px 50px;
-    }
-
-    .browser-body h1 {
-      font-size: 2rem;
-      margin: 0 0 10px;
-    }
-
-    .browser-body p {
-      font-size: 1rem;
-      color: var(--gray);
-      margin-bottom: 30px;
-    }
-
-    .button-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .button-grid button {
-      background-color: transparent;
-      border: none;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .button-grid img {
-      width: 40px;
-      height: 40px;
-      display: block;
-      margin: 0 auto 5px;
-    }
-
-    .button-grid span {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--black);
-    }
-
-    .dark-mode {
-      background: linear-gradient(to bottom, #111 0% 71.4%, #3a2a4f 71.4% 100%);
-    }
-
-    .dark-mode .browser-wrapper {
-      background-color: #222;
-      color: #eee;
-    }
-
-    .dark-mode .browser-tab {
-      background-color: #000;
-      color: #fff;
-    }
-
-    .dark-mode span {
-      color: #eee;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Infinite Ocean Waves with Floating Boats</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    background: linear-gradient(to top, #001a33 0%, #005580 70%, #87ceeb 100%);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  #ocean {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .wave-container {
+    position: absolute;
+    bottom: 0;
+    width: 200vw;
+    height: 150px;
+    left: 0;
+    animation: wave-move 10s linear infinite;
+  }
+  .wave {
+    position: absolute;
+    width: 200vw;
+    height: 150px;
+    background-repeat: repeat-x;
+    bottom: 0;
+  }
+  .wave1 {
+    background-image: radial-gradient(circle 20px at 10% 80%, #a2d2ff 80%, transparent 81%),
+                      radial-gradient(circle 20px at 30% 75%, #7bbcff 80%, transparent 81%);
+    opacity: 0.7;
+    animation: wave-shift 4s ease-in-out infinite alternate;
+    bottom: 0;
+    z-index: 1;
+  }
+  .wave2 {
+    background-image: radial-gradient(circle 25px at 20% 85%, #5a9bd4 80%, transparent 81%),
+                      radial-gradient(circle 25px at 40% 80%, #3a7cc9 80%, transparent 81%);
+    opacity: 0.5;
+    animation: wave-shift 6s ease-in-out infinite alternate;
+    bottom: 20px;
+    z-index: 2;
+  }
+  .wave3 {
+    background-image: radial-gradient(circle 30px at 15% 90%, #2a5c99 80%, transparent 81%),
+                      radial-gradient(circle 30px at 35% 85%, #184080 80%, transparent 81%);
+    opacity: 0.4;
+    animation: wave-shift 8s ease-in-out infinite alternate;
+    bottom: 40px;
+    z-index: 3;
+  }
+  @keyframes wave-move {
+    0% { left: 0; }
+    100% { left: -100vw; }
+  }
+  @keyframes wave-shift {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 50px; }
+  }
+  #boats {
+    position: absolute;
+    bottom: 70px;
+    width: 100vw;
+    height: 150px;
+    pointer-events: none;
+  }
+  .boat {
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    pointer-events: auto;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 0 5px #000a;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+  }
+  .boat:hover {
+    transform: scale(1.1) translateY(-10px);
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5));
+  }
+  .boat svg {
+    width: 80px;
+    height: 40px;
+    margin-bottom: 5px;
+    fill: #32699e;
+  }
+  @keyframes boat-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>
 </head>
 <body>
-  <div class="controls">
-    <button class="control-btn" id="darkToggle">Dark Mode</button>
-    <button class="control-btn" id="soundToggle">Sound: Off</button>
+<div id="ocean">
+  <div class="wave-container">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
   </div>
 
-  <img src="your-element.png" alt="Top Right Element" class="top-right-png">
+  <div id="boats"></div>
+</div>
 
-  <div class="browser-wrapper">
-    <div class="browser-tab">lobby</div>
-    <div class="browser-body">
-      <h1>Welcome to Portal!</h1>
-      <p>A little browser into my brain. Have a peek around.</p>
-      <div class="button-grid">
-        <button>
-          <img src="about-icon.png" alt="About Icon">
-          <span>About Me</span>
-        </button>
-        <button>
-          <img src="archives-icon.png" alt="Archives Icon">
-          <span>Archives</span>
-        </button>
-        <button>
-          <img src="links-icon.png" alt="Links Icon">
-          <span>Links</span>
-        </button>
-        <button>
-          <img src="contact-icon.png" alt="Contact Icon">
-          <span>Contact</span>
-        </button>
-        <button>
-          <img src="writing-icon.png" alt="Written Work Icon">
-          <span>Written Work</span>
-        </button>
-      </div>
-    </div>
-  </div>
+<audio id="ocean-sfx" loop preload="auto">
+  <source src="ocean-wave-sound.mp3" type="audio/mpeg" />
+  <source src="ocean-wave-sound.ogg" type="audio/ogg" />
+</audio>
 
-  <script>
-    const darkToggle = document.getElementById('darkToggle');
-    const soundToggle = document.getElementById('soundToggle');
-    let darkMode = false;
-    let soundOn = false;
+<script>
+  const boatsData = [
+    { href: "#about", title: "About Me" },
+    { href: "#archives", title: "Archives" },
+    { href: "#links", title: "Links" },
+    { href: "#contact", title: "Contact" },
+    { href: "#written", title: "Written Work" }
+  ];
 
-    darkToggle.onclick = () => {
-      darkMode = !darkMode;
-      document.body.classList.toggle('dark-mode', darkMode);
-    };
+  // Simple SVG boat icon
+  const boatSVG = `<svg viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"><path d="M2 28h60l-8-20H10L2 28z" /><rect x="26" y="4" width="12" height="10" fill="#5a9bd4"/></svg>`;
 
-    soundToggle.onclick = () => {
-      soundOn = !soundOn;
-      soundToggle.textContent = `Sound: ${soundOn ? 'On' : 'Off'}`;
-    };
-  </script>
+  const boatsContainer = document.getElementById('boats');
+
+  boatsData.forEach((boat, i) => {
+    const a = document.createElement('a');
+    a.href = boat.href;
+    a.title = boat.title;
+    a.className = 'boat';
+    a.style.left = (12 + i * 18) + 'vw';
+    a.style.animation = `boat-bob 4s ease-in-out infinite`;
+    a.style.animationDelay = `${i * 1.3}s`;
+    a.innerHTML = boatSVG + `<span>${boat.title}</span>`;
+    boatsContainer.appendChild(a);
+  });
+
+  const oceanSfx = document.getElementById('ocean-sfx');
+  function tryPlayAudio() {
+    oceanSfx.play().catch(() => {});
+    window.removeEventListener('click', tryPlayAudio);
+    window.removeEventListener('keydown', tryPlayAudio);
+  }
+  window.addEventListener('click', tryPlayAudio);
+  window.addEventListener('keydown', tryPlayAudio);
+</script>
 </body>
 </html>
-
